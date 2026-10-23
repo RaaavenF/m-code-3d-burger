@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="麦麦汉堡实验室 · 3D DIY 汉堡点单系统">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7A150C"/>
+      <stop offset="58%" stop-color="#A3200F"/>
+      <stop offset="100%" stop-color="#DA291C"/>
+    </linearGradient>
+    <linearGradient id="bun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F3BE72"/>
+      <stop offset="100%" stop-color="#D99745"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFC72C" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#FFC72C" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="#FFC72C" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="320" fill="url(#bg)"/>
+  <rect y="200" width="1200" height="120" fill="url(#glow)"/>
+
+  <!-- 网格底纹：程序员感 -->
+  <g stroke="#FFC72C" stroke-opacity="0.07">
+    <path d="M0 40h1200M0 100h1200M0 160h1200M0 220h1200M0 280h1200"/>
+    <path d="M60 0v320M180 0v320M300 0v320M420 0v320M540 0v320M660 0v320M780 0v320M900 0v320M1020 0v320M1140 0v320"/>
+  </g>
+
+  <!-- 左侧文案 -->
+  <g font-family="ui-monospace, 'JetBrains Mono', Menlo, monospace">
+    <text x="72" y="112" fill="#FFC72C" font-size="17" letter-spacing="6">1024 · DEVELOPER FESTIVAL</text>
+  </g>
+
+  <!-- 金拱门 lockup -->
+  <g transform="translate(72 138) scale(0.325)" fill="#FFC72C">
+    <path fill-rule="evenodd" d="M4 176V82C4 22 24 2 52 2C86 2 100 78 100 176C100 78 114 2 148 2C176 2 196 22 196 82V176H4Z M38 176V86C38 54 42 34 56 34C74 34 88 74 100 112C112 74 126 34 144 34C158 34 162 54 162 86V176H38Z"/>
+  </g>
+
+  <g font-family="'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif">
+    <text x="152" y="196" fill="#FFFFFF" font-size="52" font-weight="800" letter-spacing="1">麦麦汉堡实验室</text>
+    <text x="154" y="234" fill="#FFFFFF" fill-opacity="0.66" font-size="20">3D DIY 汉堡点单系统</text>
+    <text x="154" y="268" fill="#FFC72C" fill-opacity="0.9" font-size="15" font-style="italic">i&#8217;m lovin&#8217; it — stack it. name it. eat it.</text>
+  </g>
+
+  <!-- 右侧 3D 汉堡侧视示意 -->
+  <g transform="translate(890 168)">
+    <!-- 托盘 -->
+    <ellipse cx="0" cy="86" rx="150" ry="20" fill="#000" opacity="0.35"/>
+    <ellipse cx="0" cy="82" rx="136" ry="16" fill="#F3E9D6" opacity="0.9"/>
+
+    <!-- 上面包 -->
+    <path d="M-104 -6 C-104 -52 -58 -74 0 -74 C58 -74 104 -52 104 -6 Z" fill="url(#bun)"/>
+    <g fill="#FFF6E2" opacity="0.85">
+      <ellipse cx="-46" cy="-40" rx="4.4" ry="2.6" transform="rotate(-16 -46 -40)"/>
+      <ellipse cx="-14" cy="-56" rx="4.4" ry="2.6" transform="rotate(-6 -14 -56)"/>
+      <ellipse cx="22" cy="-54" rx="4.4" ry="2.6" transform="rotate(8 22 -54)"/>
+      <ellipse cx="54" cy="-34" rx="4.4" ry="2.6" transform="rotate(18 54 -34)"/>
+      <ellipse cx="-70" cy="-20" rx="4" ry="2.4" transform="rotate(-24 -70 -20)"/>
+      <ellipse cx="74" cy="-14" rx="4" ry="2.4" transform="rotate(26 74 -14)"/>
+      <ellipse cx="-26" cy="-20" rx="4.2" ry="2.5" transform="rotate(-10 -26 -20)"/>
+      <ellipse cx="12" cy="-30" rx="4.2" ry="2.5" transform="rotate(4 12 -30)"/>
+    </g>
+
+    <!-- 生菜 -->
+    <path d="M-118 -6 Q-100 -22 -78 -8 Q-56 -24 -34 -9 Q-12 -24 10 -9 Q32 -24 54 -9 Q76 -24 98 -8 Q116 -20 122 -4 L118 8 Q98 2 78 10 Q56 2 34 11 Q12 2 -10 11 Q-32 2 -54 11 Q-76 2 -96 10 Q-114 4 -118 -6 Z" fill="#7AC74F"/>
+
+    <!-- 肉排 -->
+    <path d="M-112 10 h224 a12 12 0 0 1 0 24 h-224 a12 12 0 0 1 0 -24 Z" fill="#7B4A2A"/>
+    <!-- 芝士 -->
+    <path d="M-96 34 h192 l14 14 h-220 Z" fill="#FFC53D"/>
+    <!-- 下层面包 -->
+    <path d="M-108 48 h216 a10 10 0 0 1 10 10 v6 a12 12 0 0 1 -12 12 h-212 a12 12 0 0 1 -12 -12 v-6 a10 10 0 0 1 10 -10 Z" fill="#E8A552"/>
+  </g>
+
+  <!-- 右下角标签 -->
+  <g transform="translate(1000 40)">
+    <rect x="0" y="0" width="128" height="30" rx="15" fill="#FFC72C"/>
+    <text x="64" y="20" fill="#7A150C" font-size="12" font-weight="700" font-family="ui-monospace, Menlo, monospace" text-anchor="middle">MCD MCP</text>
+  </g>
+</svg>

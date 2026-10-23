@@ -1,0 +1,284 @@
+@import 'tailwindcss';
+
+@theme {
+  /* ── 品牌与中性色 ──
+     黄与红直接对齐麦当劳官网的规范值（#FFC72C / #DA291C）。
+     上一版用的是「芝士黄 + 番茄红」，两种偏橙的自调色放在一起会互相污染，
+     整页读起来像烘焙店而不是快餐品牌。
+     背景保持暖白：食物的颜色本身很饱和，背景必须安静，但不能冷。 */
+  --color-cream: #fffaf3;
+  --color-cream-2: #fff4e8;
+  --color-paper: #ffffff;
+  --color-ink: #251c15;
+  --color-ink-2: #7c6a59;
+  --color-ink-3: #a89684;
+  --color-line: #f0e0cb;
+  --color-line-soft: #f7ebda;
+  --color-yellow: #ffc72c;
+  --color-yellow-deep: #eaa800;
+  --color-red: #da291c;
+  --color-red-deep: #b01f14;
+  --color-green: #3fa96a;
+
+  /* 旧命名保留，避免一次性改爆所有类名 */
+  --color-mcd-yellow: #ffc72c;
+  --color-mcd-red: #da291c;
+  --color-mcd-ink: #251c15;
+  --color-mcd-cream: #fffaf3;
+  --color-mcd-line: #f0e0cb;
+  --color-mcd-muted: #a89684;
+
+  --shadow-card: 0 1px 2px rgba(120, 80, 40, 0.05), 0 10px 24px rgba(120, 80, 40, 0.07);
+  --shadow-lift: 0 2px 6px rgba(120, 80, 40, 0.07), 0 18px 40px rgba(120, 80, 40, 0.12);
+  --radius-card: 24px;
+
+  --font-sans: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC',
+    system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, monospace;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+  /* 三层叠加：左上高光、右上暖雾、整体由米白到浅焦糖的竖向渐变。
+     单一纯色在 27 寸屏上会显得像没上色的线框。 */
+  background-color: #fffaf2;
+  background-image:
+    radial-gradient(900px 520px at 12% -8%, #ffffff 0%, rgba(255, 255, 255, 0) 60%),
+    radial-gradient(760px 480px at 92% 4%, #fff4e2 0%, rgba(255, 244, 226, 0) 62%),
+    linear-gradient(168deg, #fffdf8 0%, #fff7ec 58%, #fff1de 100%);
+  background-attachment: fixed;
+}
+
+/* ── 品牌标识 ──
+   .brand-mark 是 App Icon 式的红底方块。
+   官方 App Icon 里拱占宽 72%（左右各留 14%），所以这里只给 svg 一个百分比宽度，
+   剩下的留白交给方块自己撑，改尺寸时不用同步改 svg 宽高。 */
+.brand-mark {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 4px 12px rgba(218, 41, 28, 0.32);
+}
+
+.brand-mark > svg {
+  width: 72%;
+  height: auto;
+}
+
+/* 顶栏：红底。纯 #DA291C 大面积平铺会像一块色卡，
+   加一层极轻的上下明度差，才有「印刷品」而非「色块」的质感。 */
+.brand-header {
+  background-image: linear-gradient(180deg, #e63426 0%, #da291c 58%, #c62a1d 100%);
+  box-shadow: 0 4px 16px rgba(150, 30, 20, 0.22);
+}
+
+/* 主 CTA：对齐麦当劳「立即下单」的红按钮，不用渐变黄 */
+.brand-cta {
+  background-image: linear-gradient(180deg, #ec4030 0%, #da291c 56%, #c02116 100%);
+  box-shadow:
+    0 8px 18px rgba(218, 41, 28, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+.brand-cta:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+
+/* ── 面板：白卡 + 大圆角 + 暖阴影 ── */
+.panel-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(120, 88, 54, 0.08);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* ── 舞台：暖色径向渐变，四周压暗一点，让托盘成为视觉中心 ── */
+.stage-canvas {
+  background:
+    radial-gradient(circle at 50% 26%, #ffffff 0%, #fffaf2 38%, #fff2df 74%, #ffe8cc 100%);
+  box-shadow: var(--shadow-lift), inset 0 0 60px rgba(255, 214, 164, 0.24);
+}
+
+/* 舞台上方的一层柔光，让汉堡「站」在一块被打亮的地方 */
+.stage-canvas::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  width: 74%;
+  height: 30%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(255, 206, 148, 0.34), rgba(255, 206, 148, 0) 70%);
+  pointer-events: none;
+}
+
+/* ── 食材卡 ── */
+.ing-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 6px 7px;
+  border-radius: 18px;
+  background: #fffcF6;
+  border: 1px solid rgba(120, 88, 54, 0.08);
+  text-align: center;
+  transition:
+    transform 0.22s cubic-bezier(0.22, 1.2, 0.4, 1),
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease;
+  will-change: transform;
+}
+
+.ing-card:hover:not(:disabled) {
+  transform: translateY(-4px);
+  background: #fff;
+  border-color: rgba(255, 193, 47, 0.85);
+  box-shadow: 0 12px 24px rgba(150, 100, 45, 0.15);
+}
+
+.ing-card:active:not(:disabled) {
+  transform: translateY(-1px) scale(0.97);
+}
+
+.ing-card:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  filter: saturate(0.5);
+}
+
+.ing-thumb {
+  width: 100%;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: radial-gradient(circle at 50% 62%, #fff0d6 0%, rgba(255, 240, 214, 0) 76%);
+  transition: transform 0.28s cubic-bezier(0.22, 1.2, 0.4, 1);
+}
+
+.ing-card:hover:not(:disabled) .ing-thumb {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.ing-plus {
+  position: absolute;
+  right: 6px;
+  bottom: 26px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffd24f, #ffb400);
+  color: #5a3a00;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 3px 8px rgba(240, 164, 0, 0.4);
+  transition: transform 0.18s ease;
+}
+
+.ing-card:hover:not(:disabled) .ing-plus {
+  transform: scale(1.15);
+}
+
+/* ── 动效 ── */
+@keyframes mcd-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.82);
+  }
+}
+
+.mcd-pulse {
+  animation: mcd-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes mcd-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.mcd-pop {
+  animation: mcd-pop 0.36s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+/* 数字跳动：层数、价格变化时用一次 */
+@keyframes mcd-bump {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.28);
+    color: var(--color-yellow-deep);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.mcd-bump {
+  animation: mcd-bump 0.38s cubic-bezier(0.22, 1.4, 0.4, 1);
+}
+
+/* 横向滑动条：保留滑动能力，隐藏滚动条 */
+.mcd-rail {
+  scroll-snap-type: x proximity;
+}
+
+.mcd-rail > * {
+  scroll-snap-align: start;
+}
+
+.mcd-no-scrollbar {
+  scrollbar-width: none;
+}
+
+.mcd-no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* 细滚动条（图层列表、食材库） */
+.mcd-thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(160, 130, 100, 0.28) transparent;
+}
+
+.mcd-thin-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.mcd-thin-scroll::-webkit-scrollbar-thumb {
+  background: rgba(160, 130, 100, 0.28);
+  border-radius: 9px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mcd-pulse,
+  .mcd-pop,
+  .mcd-bump {
+    animation: none !important;
+  }
+}
